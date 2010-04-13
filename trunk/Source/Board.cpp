@@ -6,12 +6,13 @@ CBoard::CBoard()
 {
 	m_Count = 0;
 	m_isFinished = false;
+	int enric_cipsa = 0;
 }
 
 
 CBoard::~CBoard()
 {	
-
+	int enric_cipsa = 0;
 }
 
 void CBoard::Render	(CDebugPrintText2D& printText2d)
