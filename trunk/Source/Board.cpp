@@ -44,6 +44,7 @@ void	CBoard::Show	(CDebugPrintText2D& printText2d)
 			dy += printText2d.PrintText(400,dy,0xffffffff,"D");
 			break;
 		default:
+			dy += printText2d.PrintText(400,dy,0xffffffff,"ERROR!!");
 			break;
 		}
 	}
