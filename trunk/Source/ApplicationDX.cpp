@@ -1,3 +1,5 @@
+
+//---Engine Include--
 #include ".\applicationdx.h"
 #include <assert.h>
 #include "defines.h"
@@ -6,6 +8,12 @@
 #include "Camera.h"
 #include "CameraManager.h"
 #include "InputManager.h"
+//------------------
+
+//---Games Include--
+#include "TresEnRaya.h"
+#include "Simon.h"
+//------------------
 
 //--------CONSTRUCTOR & DESTRUCTOR------------------//
 CApplicationDX::CApplicationDX(void)
@@ -19,7 +27,11 @@ CApplicationDX::CApplicationDX(void)
 , m_timer(300)
 
 {
+	m_CurrentGame = (CTresEnRaya*) new CTresEnRaya();
+	m_VectorGames.push_back(m_CurrentGame);
 
+	m_CurrentGame = (CSimon*) new CSimon();
+	m_VectorGames.push_back(m_CurrentGame);
 }
 
 CApplicationDX::~CApplicationDX(void)
@@ -29,7 +41,7 @@ CApplicationDX::~CApplicationDX(void)
 	CCameraManager::GetInstance()->CleanUP();
 		
 	CHECKED_RELEASE(m_pD3DDevice);
-    CHECKED_RELEASE(m_pD3D);
+  CHECKED_RELEASE(m_pD3D);
 }
 //----------------------------------------------------//
 
@@ -60,11 +72,11 @@ HRESULT CApplicationDX::InitDX( HWND hWnd )
     d3dpp.Windowed = TRUE;
     d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
     d3dpp.BackBufferFormat = D3DFMT_UNKNOWN;
-	d3dpp.AutoDepthStencilFormat = D3DFMT_D16;
-	d3dpp.EnableAutoDepthStencil = TRUE;
-	d3dpp.AutoDepthStencilFormat = D3DFMT_D24S8;
-	d3dpp.Flags                  = D3DPRESENTFLAG_DISCARD_DEPTHSTENCIL;
-	d3dpp.PresentationInterval   = D3DPRESENT_INTERVAL_IMMEDIATE;
+		d3dpp.AutoDepthStencilFormat = D3DFMT_D16;
+		d3dpp.EnableAutoDepthStencil = TRUE;
+		d3dpp.AutoDepthStencilFormat = D3DFMT_D24S8;
+		d3dpp.Flags                  = D3DPRESENTFLAG_DISCARD_DEPTHSTENCIL;
+		d3dpp.PresentationInterval   = D3DPRESENT_INTERVAL_IMMEDIATE;
 
     // Create the D3DDevice
     if( FAILED( m_pD3D->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
@@ -216,7 +228,7 @@ void CApplicationDX::Render()
 
 	//dy += m_printText2D.PrintText(400,dy,0xffffffff,"XXX");
 	
-	m_Game.Render(m_printText2D);
+	m_CurrentGame->Render(m_printText2D);
 
 		// >>>>> END
 	//--------------------------------------------------------------------------------------//		
@@ -268,7 +280,7 @@ void CApplicationDX::Update()
 	m_timer.Update();
 	float l_ElapsedTime = m_timer.GetElapsedTime();
 
-	m_Game.Update(l_ElapsedTime);
+	m_CurrentGame->Update(l_ElapsedTime);
 	
 	CInputManager::GetInstance()->ReadInput( m_hWnd );
 	
@@ -286,6 +298,18 @@ void CApplicationDX::UpdateActions( float l_ElapsedTime )
 	CCameraManager* cameraManager = CCameraManager::GetInstance();
 	CInputManager * input = CInputManager::GetInstance();
 	
+	if( input->DoAction("Simon1") && input->DoAction("Simon2") )
+	{
+		m_CurrentGame->DeInit();
+		m_CurrentGame = m_VectorGames[1];
+		m_CurrentGame->Init();
+	}
+	if( input->DoAction("TresEnRaya1") &&input->DoAction("TresEnRaya2") )
+	{
+		m_CurrentGame->DeInit();
+		m_CurrentGame = m_VectorGames[0];
+		m_CurrentGame->Init();
+	}
 
 	//TODO 2.4: Hemos de comprobar si se están realizando los inputs (de teclado) asociados a las 
 	//acciones ChangeVision(), ChangeFrustum() y ChangeFrustum()

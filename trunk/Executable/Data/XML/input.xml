@@ -30,6 +30,12 @@
 	<KEYBOARD name_action="paintInfoGame"		name_input="DIK_F2"		debug="yes"/>
 	<KEYBOARD name_action="camViewDist-"		name_input="DIK_0" 		debug="yes"/>	
 	<KEYBOARD name_action="camViewDist+"		name_input="DIK_9"		debug="yes"/>
+
+  <KEYBOARD name_action="Simon1"		name_input="DIK_1"		debug="yes"/>
+  <KEYBOARD name_action="Simon2"		name_input="DIK_LSHIFT"		debug="yes"/>
+  
+  <KEYBOARD name_action="TresEnRaya1"		name_input="DIK_2"		debug="yes"/>
+  <KEYBOARD name_action="TresEnRaya2"		name_input="DIK_LSHIFT"		debug="yes"/>
 	
 
 

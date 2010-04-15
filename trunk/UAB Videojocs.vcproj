@@ -333,6 +333,14 @@
 		<Filter
 			Name="Games"
 			>
+			<File
+				RelativePath=".\Source\BaseGame.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Source\BaseGame.h"
+				>
+			</File>
 			<Filter
 				Name="3EnRaya"
 				>
@@ -356,6 +364,14 @@
 			<Filter
 				Name="Simon"
 				>
+				<File
+					RelativePath=".\Source\Simon.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Source\Simon.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<File
