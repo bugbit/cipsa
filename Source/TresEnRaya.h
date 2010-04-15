@@ -3,8 +3,9 @@
 
 #include "DebugPrintText2D.h"
 #include "Board.h"
+#include "BaseGame.h"
 
-class CTresEnRaya
+class CTresEnRaya: public CBaseGame
 {
 public:
 	CTresEnRaya();
@@ -12,6 +13,9 @@ public:
 
 	void		Render		(CDebugPrintText2D& printText2d);
 	void		Update		(float dt);
+
+	void		Init			(){};
+	void		DeInit		(){};
 
 private:
 

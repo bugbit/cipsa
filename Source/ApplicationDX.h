@@ -5,7 +5,8 @@
 #include "Sphere.h"
 #include "Timer.h"
 #include "DebugPrinttext2D.h"
-#include "TresEnRaya.h"
+#include "BaseGame.h"
+#include <vector>
 
 class CApplicationDX
 {
@@ -43,9 +44,10 @@ private:
 	bool		m_drawAxisGrid;		//Indica si pintamos un eje de referencia y un grid en la posicion (0,0,0)
 	
 	CTimer		m_timer;			//Objeto con toda la informacion del tiempo (fps, ElapsedTime, etc)
-	HWND		m_hWnd;				//Identificador de ventana donde se incrusta el visualizador 
+	HWND			m_hWnd;				//Identificador de ventana donde se incrusta el visualizador 
 
-	CTresEnRaya	m_Game;
+	CBaseGame*	m_CurrentGame;
+	std::vector<CBaseGame*>	m_VectorGames;
 
 
 	CDebugPrintText2D	m_printText2D;	//Objeto para poder pintar texto2D en pantalla
