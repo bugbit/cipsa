@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="./ThirdParty/d3d/Include; ./ThirdParty/expat/"
+				AdditionalIncludeDirectories="./ThirdParty/d3d/Include;./ThirdParty/expat/;&quot;C:\Program Files\Microsoft DirectX SDK (August 2009)\Include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -66,7 +66,7 @@
 				AdditionalDependencies="d3dxof.lib dxguid.lib d3dx9d.lib d3d9.lib winmm.lib dinput8.lib libexpat.lib"
 				OutputFile="$(OutDir)/UAB VideojocsD.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="./ThirdParty/expat/;./ThirdParty/d3d/Lib/x86"
+				AdditionalLibraryDirectories="./ThirdParty/expat/;./ThirdParty/d3d/Lib/x86;&quot;C:\Program Files\Microsoft DirectX SDK (August 2009)\Lib\x86&quot;"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(OutDir)/UAB VideojocsD.pdb"
 				SubSystem="2"
@@ -334,11 +334,11 @@
 			Name="Games"
 			>
 			<File
-				RelativePath=".\Source\BaseGame.cpp"
+				RelativePath=".\BaseGame.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Source\BaseGame.h"
+				RelativePath=".\BaseGame.h"
 				>
 			</File>
 			<Filter
@@ -365,11 +365,11 @@
 				Name="Simon"
 				>
 				<File
-					RelativePath=".\Source\Simon.cpp"
+					RelativePath="..\UAB_Videojocs_Sessio2_TODO\Simon.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Source\Simon.h"
+					RelativePath=".\Simon.h"
 					>
 				</File>
 			</Filter>
