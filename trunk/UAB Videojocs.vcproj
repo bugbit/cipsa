@@ -334,11 +334,11 @@
 			Name="Games"
 			>
 			<File
-				RelativePath=".\BaseGame.cpp"
+				RelativePath=".\Source\BaseGame.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\BaseGame.h"
+				RelativePath=".\Source\BaseGame.h"
 				>
 			</File>
 			<Filter
@@ -365,13 +365,17 @@
 				Name="Simon"
 				>
 				<File
-					RelativePath="..\UAB_Videojocs_Sessio2_TODO\Simon.cpp"
+					RelativePath=".\Source\Simon.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Simon.h"
+					RelativePath=".\Source\Simon.h"
 					>
 				</File>
+			</Filter>
+			<Filter
+				Name="Snake"
+				>
 			</Filter>
 		</Filter>
 		<File
