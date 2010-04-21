@@ -376,6 +376,14 @@
 			<Filter
 				Name="Snake"
 				>
+				<File
+					RelativePath=".\Source\Snake.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Source\Snake.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<File
