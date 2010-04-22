@@ -302,6 +302,12 @@ void CApplicationDX::UpdateActions( float l_ElapsedTime )
 	CCameraManager* cameraManager = CCameraManager::GetInstance();
 	CInputManager * input = CInputManager::GetInstance();
 	
+	if( input->DoAction("Snake1") && input->DoAction("Snake2") )
+	{
+		m_CurrentGame->DeInit();
+		m_CurrentGame = m_VectorGames[2];
+		m_CurrentGame->Init();
+	}
 	if( input->DoAction("Simon1") && input->DoAction("Simon2") )
 	{
 		m_CurrentGame->DeInit();
