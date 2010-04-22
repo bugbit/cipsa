@@ -26,12 +26,14 @@ public:
 
 private:
 	void		UpdateInputActions	(float dt);
+	void		Eat	(float dt);
 private:
 
 	std::vector<SBody>	m_Snake;
-	bool								m_bIsEnd;
+	bool							m_bIsEnd;
 	Direction						m_Direction;
-	float								m_fSpeed;
+	float							m_fSpeed;
+	float							m_fTimer;
 };
 
 #endif //_SNAKE_H
