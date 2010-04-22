@@ -6,17 +6,10 @@
 
 CSnakeGame::CSnakeGame()
 : m_bIsEnd(false) 
-, m_fMoveTime(MOVE_TIME)
-, m_bMove(false)
-, m_fSpeed(100.f)
-, m_Direction(DIR_RIGHT)
 , m_fGrowTime(5.f)
-, m_bGrow(false)
+, m_Snake1(400,400)
+, m_Snake2(200,400)
 {
-	SBody body;
-	body.m_fPosX = 400;
-	body.m_fPosY = 400;
-	m_Snake.push_back(body);
 }
 
 CSnakeGame::~CSnakeGame()
@@ -33,10 +26,8 @@ void CSnakeGame::Render		(CDebugPrintText2D& printText2d)
 	}
 	else
 	{
-		for(int cont = 0; cont < m_Snake.size(); cont++)
-		{
-			printText2d.PrintText(m_Snake[cont].m_fPosX,m_Snake[cont].m_fPosY,0xffffffff,"X");	
-		}
+		m_Snake1.Render(printText2d);
+		m_Snake2.Render(printText2d);
 	}
 }
 
@@ -44,10 +35,13 @@ void CSnakeGame::Update		(float dt)
 {
 
 	UpdateInputActions( dt );
+	m_Snake1.Update(dt);
+	m_Snake2.Update(dt);
 
+	SBody headSnake = m_Snake1.GetHeadPosition();
 
-	if (	m_Snake[0].m_fPosX > 800 || m_Snake[0].m_fPosX < 0 ||
-				m_Snake[0].m_fPosY > 600 || m_Snake[0].m_fPosY < 0 )
+	if (	headSnake.m_fPosX > 800 || headSnake.m_fPosX < 0 ||
+				headSnake.m_fPosY > 600 || headSnake.m_fPosY < 0 )
 	{
 		m_bIsEnd = true;
 	}
@@ -57,59 +51,9 @@ void CSnakeGame::Update		(float dt)
 	if (m_fGrowTime <= 0)
 	{
 		m_fGrowTime = 5.f;
-		m_bGrow = true;
+		m_Snake1.Grow();
+		m_Snake2.Grow();
 	}
-
-
-	m_fMoveTime -= dt;
-	if (m_fMoveTime <= 0 )
-	{
-		m_bMove = true;
-		m_fMoveTime = MOVE_TIME;
-	}
-
-	if (m_bMove)
-	{
-		m_bMove = false;
-
-		if (m_bGrow)
-		{
-			m_bGrow = false;
-			m_Snake.push_back(m_Snake[0]);
-		}
-
-		for( int cont = m_Snake.size()-1; cont > 0; cont--)
-		{
-			m_Snake[cont] = m_Snake[cont-1];
-		}
-		switch (m_Direction)
-		{
-		case DIR_RIGHT:
-			m_Snake[0].m_fPosX += BODY_SIZE;
-			break;
-
-		case DIR_LEFT:
-			m_Snake[0].m_fPosX -= BODY_SIZE;
-			break;
-
-		case DIR_UP:
-			m_Snake[0].m_fPosY -= BODY_SIZE;
-			break;
-
-		case DIR_DOWN:
-			m_Snake[0].m_fPosY += BODY_SIZE;
-			break;
-
-		default:
-			break;
-			//ERROR!!!
-		}
-
-		
-	}
-	
-
-
 }
 
 
@@ -117,20 +61,40 @@ void CSnakeGame::UpdateInputActions( float dt )
 {
 	CInputManager * input = CInputManager::GetInstance();
 
+	//Update Snake 1:
 	if( input->DoAction("tecla_Down") )
 	{
-		m_Direction = DIR_DOWN;
+		m_Snake1.SetDirection( DIR_DOWN );
 	}
 	else if( input->DoAction("tecla_Up") )
 	{
-		m_Direction = DIR_UP;
+		m_Snake1.SetDirection( DIR_UP );
 	}
 	else if( input->DoAction("tecla_Right") )
 	{
-		m_Direction = DIR_RIGHT;
+		m_Snake1.SetDirection( DIR_RIGHT );
 	}
 	else if( input->DoAction("tecla_Left") )
 	{
-		m_Direction = DIR_LEFT;
+		m_Snake1.SetDirection( DIR_LEFT );
+	}
+
+
+	//Update Snake 2:
+	if( input->DoAction("teclaS") )
+	{
+		m_Snake2.SetDirection( DIR_DOWN );
+	}
+	else if( input->DoAction("teclaW") )
+	{
+		m_Snake2.SetDirection( DIR_UP );
+	}
+	else if( input->DoAction("teclaD") )
+	{
+		m_Snake2.SetDirection( DIR_RIGHT );
+	}
+	else if( input->DoAction("teclaA") )
+	{
+		m_Snake2.SetDirection( DIR_LEFT );
 	}
 }
