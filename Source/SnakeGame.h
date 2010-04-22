@@ -1,15 +1,9 @@
-#ifndef _SNAKE_H
-#define _SNAKE_H
+#ifndef _SNAKE_GAME_H
+#define _SNAKE_GAME_H
 
 #include "BaseGame.h"
+#include "Snake.h"
 #include <vector>
-
-struct SBody
-{
-	float	m_fPosX;
-	float	m_fPosY;
-};
-typedef enum Direction {DIR_RIGHT, DIR_LEFT, DIR_UP, DIR_DOWN, DIR_NOTHING};
 
 
 class CSnakeGame: public CBaseGame
@@ -28,15 +22,11 @@ private:
 	void		UpdateInputActions	(float dt);
 private:
 
-	std::vector<SBody>	m_Snake;
-	bool								m_bIsEnd;
-	Direction						m_Direction;
-	float								m_fSpeed;
-	float								m_fMoveTime;
-	bool								m_bMove;
+	CSnake		m_Snake1;
+	CSnake		m_Snake2;
+	bool			m_bIsEnd;
+	float			m_fGrowTime;
 
-	float								m_fGrowTime;
-	bool								m_bGrow;
 };
 
-#endif //_SNAKE_H
+#endif //_SNAKE_GAME_H
