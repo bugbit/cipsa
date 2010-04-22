@@ -374,14 +374,14 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Snake"
+				Name="SnakeGame"
 				>
 				<File
-					RelativePath=".\Source\Snake.cpp"
+					RelativePath=".\Source\SnakeGame.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Source\Snake.h"
+					RelativePath=".\Source\SnakeGame.h"
 					>
 				</File>
 			</Filter>
