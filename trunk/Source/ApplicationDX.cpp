@@ -13,7 +13,7 @@
 //---Games Include--
 #include "TresEnRaya.h"
 #include "Simon.h"
-#include "Snake.h"
+#include "SnakeGame.h"
 //------------------
 
 //--------CONSTRUCTOR & DESTRUCTOR------------------//
@@ -34,7 +34,7 @@ CApplicationDX::CApplicationDX(void)
 	m_CurrentGame = (CSimon*) new CSimon();
 	m_VectorGames.push_back(m_CurrentGame);
 
-	m_CurrentGame = (CSnake*) new CSnake();
+	m_CurrentGame = (CSnakeGame*) new CSnakeGame();
 	m_VectorGames.push_back(m_CurrentGame);
 }
 
