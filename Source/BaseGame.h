@@ -13,7 +13,7 @@ public:
 	virtual void		Render		(CDebugPrintText2D& printText2d) = 0;
 	virtual void		Update		(float dt) = 0;
 
-	virtual void		Init			() = 0;
+	virtual void		Init		() = 0;
 	virtual void		DeInit		() = 0;
 
 
