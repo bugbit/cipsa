@@ -11,7 +11,7 @@
 //------------------
 
 //---Games Include--
-#include "TresEnRaya.h"
+#include "Snake.h"
 #include "Simon.h"
 #include "SnakeGame.h"
 //------------------
@@ -28,7 +28,7 @@ CApplicationDX::CApplicationDX(void)
 , m_timer(300)
 
 {
-	m_CurrentGame = (CTresEnRaya*) new CTresEnRaya();
+	m_CurrentGame = (CSnake*) new CSnake();
 	m_VectorGames.push_back(m_CurrentGame);
 
 	m_CurrentGame = (CSimon*) new CSimon();
@@ -314,7 +314,7 @@ void CApplicationDX::UpdateActions( float l_ElapsedTime )
 		m_CurrentGame = m_VectorGames[1];
 		m_CurrentGame->Init();
 	}
-	if( input->DoAction("TresEnRaya1") &&input->DoAction("TresEnRaya2") )
+	if( input->DoAction("Snake1") &&input->DoAction("Snake2") )
 	{
 		m_CurrentGame->DeInit();
 		m_CurrentGame = m_VectorGames[0];
