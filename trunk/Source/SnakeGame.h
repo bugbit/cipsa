@@ -3,8 +3,14 @@
 
 #include "BaseGame.h"
 #include "Snake.h"
+#include "PlayerInput.h"
 #include <vector>
 
+struct SPlayer
+{
+	CSnake	*			m_snake;
+	CPlayerInput	m_PlayerInput;
+};
 
 class CSnakeGame: public CBaseGame
 {
@@ -22,10 +28,9 @@ private:
 	void		UpdateInputActions	(float dt);
 private:
 
-	CSnake		m_Snake1;
-	CSnake		m_Snake2;
-	bool			m_bIsEnd;
-	float			m_fGrowTime;
+	std::vector<SPlayer>	m_Players;
+	bool									m_bIsEnd;
+	float									m_fGrowTime;
 
 };
 

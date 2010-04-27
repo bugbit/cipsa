@@ -7,9 +7,26 @@
 CSnakeGame::CSnakeGame()
 : m_bIsEnd(false) 
 , m_fGrowTime(5.f)
-, m_Snake1(400,400)
-, m_Snake2(200,400)
 {
+	SPlayer p1;
+	p1.m_snake = new CSnake(400,400);
+	p1.m_PlayerInput.SetSnake(p1.m_snake);
+	m_Players.push_back(p1);
+
+	SPlayer p2;
+	p2.m_snake = new CSnake(200,400);
+	p2.m_PlayerInput.SetSnake(p2.m_snake);
+	p2.m_PlayerInput.SetMoveUp("teclaW");
+	p2.m_PlayerInput.SetMoveDown("teclaS");
+	p2.m_PlayerInput.SetMoveRight("teclaD");
+	p2.m_PlayerInput.SetMoveLeft("teclaA");
+	m_Players.push_back(p2);
+
+	SPlayer p3;
+	p3.m_snake = new CSnake(500,400);
+	p3.m_PlayerInput.SetSnake(p3.m_snake);
+	m_Players.push_back(p3);
+
 }
 
 CSnakeGame::~CSnakeGame()
@@ -26,75 +43,50 @@ void CSnakeGame::Render		(CDebugPrintText2D& printText2d)
 	}
 	else
 	{
-		m_Snake1.Render(printText2d);
-		m_Snake2.Render(printText2d);
+		for(int cont = 0; cont < m_Players.size(); cont ++)
+		{
+			m_Players[cont].m_snake->Render(printText2d);
+		}
 	}
 }
 
 void CSnakeGame::Update		(float dt)
 {
 
-	UpdateInputActions( dt );
-	m_Snake1.Update(dt);
-	m_Snake2.Update(dt);
-
-	SBody headSnake = m_Snake1.GetHeadPosition();
-
-	if (	headSnake.m_fPosX > 800 || headSnake.m_fPosX < 0 ||
-				headSnake.m_fPosY > 600 || headSnake.m_fPosY < 0 )
+	for(int cont = 0; cont < m_Players.size(); cont ++)
 	{
-		m_bIsEnd = true;
+		m_Players[cont].m_snake->Update(dt);
+		m_Players[cont].m_PlayerInput.UpdateInputAction(dt);
 	}
+	
+
+	for(int cont = 0; cont < m_Players.size(); cont ++)
+	{
+		SBody headSnake = m_Players[cont].m_snake->GetBodyHead();
+
+		if (	headSnake.m_fPosX > 800 || headSnake.m_fPosX < 0 ||
+					headSnake.m_fPosY > 600 || headSnake.m_fPosY < 0 )
+		{
+			m_bIsEnd = true;
+		}
+	}
+
+
 
 	//Update Logic Game:
 	m_fGrowTime -= dt;
 	if (m_fGrowTime <= 0)
 	{
 		m_fGrowTime = 5.f;
-		m_Snake1.Grow();
-		m_Snake2.Grow();
+		for(int cont = 0; cont < m_Players.size(); cont ++)
+		{
+			m_Players[cont].m_snake->Grow();
+		}
 	}
 }
 
 
 void CSnakeGame::UpdateInputActions( float dt )
 {
-	CInputManager * input = CInputManager::GetInstance();
-
-	//Update Snake 1:
-	if( input->DoAction("tecla_Down") )
-	{
-		m_Snake1.SetDirection( DIR_DOWN );
-	}
-	else if( input->DoAction("tecla_Up") )
-	{
-		m_Snake1.SetDirection( DIR_UP );
-	}
-	else if( input->DoAction("tecla_Right") )
-	{
-		m_Snake1.SetDirection( DIR_RIGHT );
-	}
-	else if( input->DoAction("tecla_Left") )
-	{
-		m_Snake1.SetDirection( DIR_LEFT );
-	}
-
-
-	//Update Snake 2:
-	if( input->DoAction("teclaS") )
-	{
-		m_Snake2.SetDirection( DIR_DOWN );
-	}
-	else if( input->DoAction("teclaW") )
-	{
-		m_Snake2.SetDirection( DIR_UP );
-	}
-	else if( input->DoAction("teclaD") )
-	{
-		m_Snake2.SetDirection( DIR_RIGHT );
-	}
-	else if( input->DoAction("teclaA") )
-	{
-		m_Snake2.SetDirection( DIR_LEFT );
-	}
+	
 }
