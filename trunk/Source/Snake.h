@@ -26,7 +26,7 @@ public:
 	inline SBody		GetBodyHead					() const							{		return m_Snake[0];	}
 	inline void     SetDirection				(Direction direction)	{		m_Direction=direction;	}
 	inline void			Grow								() 										{ m_bGrow=true; }
-	bool						IsCollision					(float posx, float posy);
+	bool						IsCollision					(float posx,float posy);
 
 private:
 
