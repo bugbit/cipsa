@@ -3,13 +3,15 @@
 
 #include "BaseGame.h"
 #include "Snake.h"
-#include "PlayerInput.h"
+#include "CKeyboardPlayerInput.h"
+#include "CAIPlayerInput.h"
+#include "CItem.h"
 #include <vector>
 
 struct SPlayer
 {
 	CSnake	*			m_snake;
-	CPlayerInput	m_PlayerInput;
+	CPlayerInput	*	m_PlayerInput;
 };
 
 class CSnakeGame: public CBaseGame

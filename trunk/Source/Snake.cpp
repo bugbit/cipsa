@@ -20,7 +20,7 @@ void CSnake::Render(CDebugPrintText2D& printText2d)
 {
 	for(int cont = 0; cont < m_Snake.size(); cont++)
 	{
-		printText2d.PrintText(m_Snake[cont].m_fPosX,m_Snake[cont].m_fPosY,0xffffffff,"X");	
+		printText2d.PrintText(m_Snake[cont].m_fPosX, m_Snake[cont].m_fPosY, 0xffffffff, "X");	
 	}
 }
 
@@ -75,6 +75,7 @@ void CSnake::Update(float dt)
 	}
 }
 
+/*
 bool CSnake::IsCollision(float posx,float posy)
 {
 	//	en la collision no se mira la cabeza que es la posicion 0
@@ -83,6 +84,19 @@ bool CSnake::IsCollision(float posx,float posy)
 		float dx=posx-m_Snake[i].m_fPosX;
 		float dy=posy-m_Snake[i].m_fPosY;
 		if ((dx>0 && dx<BODY_SIZE) && (dy>0 && dy<BODY_SIZE))
+			return true;
+	}
+
+	return false;
+}*/
+
+bool CSnake::IsCollision(float posx, float posy)
+{
+	for (int i = 0;i < m_Snake.size(); i++)
+	{
+		float dx = posx-m_Snake[i].m_fPosX;
+		float dy = posy-m_Snake[i].m_fPosY;
+		if ((dx > 0 && dx < BODY_SIZE) && (dy > 0 && dy < BODY_SIZE))
 			return true;
 	}
 
