@@ -29,6 +29,22 @@ CSnakeGame::CSnakeGame()
 	p3.m_PlayerInput.SetSnake(p3.m_snake);
 	m_Players.push_back(p3);*/
 
+
+	//Metemos unos cuantos items:
+	CItem* item;
+	item = new CItem();
+	item->SetPosX(100); item->SetPosY(100);
+	m_Items.push_back(item);
+
+	item = new CItem();
+	item->SetPosX(100); item->SetPosY(200);
+	m_Items.push_back(item);
+
+	item = new CItem();
+	item->SetPosX(100); item->SetPosY(300);
+	m_Items.push_back(item);
+
+
 }
 
 CSnakeGame::~CSnakeGame()
@@ -45,10 +61,18 @@ void CSnakeGame::Render		(CDebugPrintText2D& printText2d)
 	}
 	else
 	{
+		//Pintamos los snakes:
 		for(int cont = 0; cont < m_Players.size(); cont ++)
 		{
 			m_Players[cont].m_snake->Render(printText2d);
 		}
+	
+		//Pintamos los items:
+		for(int cont = 0; cont < m_Items.size(); cont ++)
+		{
+			m_Items[cont]->Render(printText2d);
+		}
+
 	}
 }
 
