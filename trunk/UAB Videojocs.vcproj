@@ -377,6 +377,14 @@
 				Name="SnakeGame"
 				>
 				<File
+					RelativePath=".\Source\Item.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Source\Item.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Source\PlayerInput.cpp"
 					>
 				</File>

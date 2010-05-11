@@ -4,6 +4,7 @@
 #include "BaseGame.h"
 #include "Snake.h"
 #include "PlayerInput.h"
+#include "Item.h"
 #include <vector>
 
 struct SPlayer
@@ -29,6 +30,7 @@ private:
 private:
 
 	std::vector<SPlayer>	m_Players;
+	std::vector<CItem*>		m_Items;
 	bool									m_bIsEnd;
 	float									m_fGrowTime;
 

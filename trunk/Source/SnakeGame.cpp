@@ -12,9 +12,11 @@ CSnakeGame::CSnakeGame()
 	p1.m_snake = new CSnake(400,400);
 	p1.m_PlayerInput.SetSnake(p1.m_snake);
 	m_Players.push_back(p1);
+		
 
-	SPlayer p2;
+	/*SPlayer p2;
 	p2.m_snake = new CSnake(200,400);
+
 	p2.m_PlayerInput.SetSnake(p2.m_snake);
 	p2.m_PlayerInput.SetMoveUp("teclaW");
 	p2.m_PlayerInput.SetMoveDown("teclaS");
@@ -25,7 +27,7 @@ CSnakeGame::CSnakeGame()
 	SPlayer p3;
 	p3.m_snake = new CSnake(500,400);
 	p3.m_PlayerInput.SetSnake(p3.m_snake);
-	m_Players.push_back(p3);
+	m_Players.push_back(p3);*/
 
 }
 
